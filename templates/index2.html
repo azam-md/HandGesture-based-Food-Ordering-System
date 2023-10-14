@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Title</title>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+        }
+        
+        .bg-image {
+            width: 50%; /* Half the width of the page */
+    height: 100vh; /* Full viewport height */
+    float: left; /* Keep it on the left side of the page */
+    background-image: url('{{ url_for("static", filename="background.png") }}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+        }
+
+        
+.video-feed {
+    position: absolute;
+    top: 167px;  /* This will push it 50 pixels down */
+    left: 57px;
+margin-right: 50px;
+    width: 41%;
+    height: 62.5%;
+}
+
+.right-container {
+    width: 50%;
+    background-image: url('{{ url_for("static", filename="menu2.png") }}');
+    background-size: cover;
+    position: relative;  /* This is essential for overlaying content */
+}
+
+
+        .menu-icons {
+    display: grid;
+margin-left: 80px; 
+    grid-template-columns: repeat(3, 1fr); /* This creates a 5x2 grid */
+    gap: 100px; /* Spacing between icons */
+position:absolute;
+ top: 70%;  /* Adjust this to position the grid vertically as you want */
+    left: 43%;  /* Adjust this to position the grid horizontally as you want */
+    transform: translate(-50%, -50%);  /* Center the grid */
+}
+.menu-heading {
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 40px;
+    color: #333;  /* Adjust the color as needed */
+}
+
+
+        .menu-icon {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-image">
+        <img src="{{ url_for('video_feed') }}" class="video-feed" />
+    </div>
+
+
+
+
+<div class="right-container"> <!-- Assuming you have a container for the right side -->
+
+    <!--........<h2 class="menu-heading">Menu Items</h2>........-->
+
+    <div class="menu-icons">
+        <!-- Place all your icon images here -->
+    	<img src="{{ url_for('static', filename='icon2.png') }}" alt="Menu 2" class="menu-icon" data-gesture="0">
+	<img src="{{ url_for('static', filename='icon1.png') }}" alt="Menu 1" class="menu-icon" data-gesture="1">
+   	 <img src="{{ url_for('static', filename='icon3.png') }}" alt="Menu 2" class="menu-icon" data-gesture="2">
+  	  <img src="{{ url_for('static', filename='icon4.png') }}" alt="Menu 1" class="menu-icon" data-gesture="3">
+  	  <img src="{{ url_for('static', filename='icon5.png') }}" alt="Menu 2" class="menu-icon" data-gesture="4">
+  	  <img src="{{ url_for('static', filename='icon6.png') }}" alt="Menu 1" class="menu-icon" data-gesture="5">
+  	  <img src="{{ url_for('static', filename='icon7.png') }}" alt="Menu 2" class="menu-icon" data-gesture="6">    
+	<!-- ... add the remaining icons in similar fashion ... -->
+    </div>
+    
+</div>
+<script src="{{ url_for('static', filename='js/your_script.js') }}"></script>
+</body>
+</html>
