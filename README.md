@@ -16,6 +16,10 @@ inclusivity ensures that all patrons can quickly and
 confidently place their orders without relying on external
 assistance. 
 
+# Algorithms used:
+Hybrid of
+-  CNN and
+- Decision Tree
 # Let's look at a step-by-step guide on how to exeute this project
 Here's a list of required installations and libraries:
 
