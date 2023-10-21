@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Title</title>
+    <title>Sign&Dine</title>
+<script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+<script>
+const BASE_URL = "{{ url_for('static', filename='') }}";
+</script>
+
     <style>
         body {
             display: flex;
@@ -20,7 +25,15 @@
     background-position: center center;
         }
 
-        
+ #selected-item{
+<!--display: none;-->  /* Initially hidden */
+    width: 100px;   /* Adjust as needed */
+    height: 100px;  /* Adjust as needed */
+    position: absolute;
+    top: 85%;  /* This will push it just below the video feed */
+    left: 11%;  /* Center it horizontally */
+    transform: translateX(-50%);  /* This will help with the centering */
+}      
 .video-feed {
     position: absolute;
     top: 167px;  /* This will push it 50 pixels down */
@@ -41,7 +54,7 @@ margin-right: 50px;
         .menu-icons {
     display: grid;
 margin-left: 80px; 
-    grid-template-columns: repeat(3, 1fr); /* This creates a 5x2 grid */
+    grid-template-columns: repeat(3, 1fr); /* This creates a  grid */
     gap: 100px; /* Spacing between icons */
 position:absolute;
  top: 70%;  /* Adjust this to position the grid vertically as you want */
@@ -55,6 +68,11 @@ position:absolute;
     color: #333;  /* Adjust the color as needed */
 }
 
+#quantity-icons {
+    display: none;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));  /* This will create a responsive grid with each item taking up at least 100px */
+    gap: 16px;  /* Spacing between grid items */
+}
 
         .menu-icon {
             width: 100px;
@@ -65,6 +83,7 @@ position:absolute;
 <body>
     <div class="bg-image">
         <img src="{{ url_for('video_feed') }}" class="video-feed" />
+        <div id="selected-item"></div>
     </div>
 
 
@@ -74,19 +93,39 @@ position:absolute;
 
     <!--........<h2 class="menu-heading">Menu Items</h2>........-->
 
-    <div class="menu-icons">
+    <div class="menu-icons" id="menu-items">
         <!-- Place all your icon images here -->
-    	<img src="{{ url_for('static', filename='icon2.png') }}" alt="Menu 2" class="menu-icon" data-gesture="0">
-	<img src="{{ url_for('static', filename='icon1.png') }}" alt="Menu 1" class="menu-icon" data-gesture="1">
-   	 <img src="{{ url_for('static', filename='icon3.png') }}" alt="Menu 2" class="menu-icon" data-gesture="2">
-  	  <img src="{{ url_for('static', filename='icon4.png') }}" alt="Menu 1" class="menu-icon" data-gesture="3">
-  	  <img src="{{ url_for('static', filename='icon5.png') }}" alt="Menu 2" class="menu-icon" data-gesture="4">
-  	  <img src="{{ url_for('static', filename='icon6.png') }}" alt="Menu 1" class="menu-icon" data-gesture="5">
-  	  <img src="{{ url_for('static', filename='icon7.png') }}" alt="Menu 2" class="menu-icon" data-gesture="6">    
+    	<img src="{{ url_for('static', filename='icon0.png') }}" alt="Menu 1" class="menu-icon" data-gesture="0">
+	<img src="{{ url_for('static', filename='icon1.png') }}" alt="Menu 2" class="menu-icon" data-gesture="1">
+   	 <img src="{{ url_for('static', filename='icon2.png') }}" alt="Menu 3" class="menu-icon" data-gesture="2">
+  	  <img src="{{ url_for('static', filename='icon3.png') }}" alt="Menu 4" class="menu-icon" data-gesture="3">
+  	  <img src="{{ url_for('static', filename='icon4.png') }}" alt="Menu 5" class="menu-icon" data-gesture="4">
+  	  <img src="{{ url_for('static', filename='icon5.png') }}" alt="Menu 6" class="menu-icon" data-gesture="5">
+  	  <img src="{{ url_for('static', filename='icon6.png') }}" alt="Menu 7" class="menu-icon" data-gesture="6">    
 	<!-- ... add the remaining icons in similar fashion ... -->
     </div>
-    
+<div id="quantity-icons" >
+      <!--  <img src="{{ url_for('static', filename='quantity1.png') }}" alt="Quantity 1" class="menu-icon" data-gesture="1">
+        <img src="{{ url_for('static', filename='quantity2.png') }}" alt="Quantity 2" class="menu-icon" data-gesture="2">
+        <img src="{{ url_for('static', filename='quantity3.png') }}" alt="Quantity 3" class="menu-icon" data-gesture="3">
+    --></div>
+
 </div>
 <script src="{{ url_for('static', filename='js/your_script.js') }}"></script>
+<!--<script>
+        const socket = io.connect('http://127.0.0.1:5000');  // Adjust the URL if needed
+
+        socket.on('connect', () => {
+            socket.emit('start_gesture_recognition');
+        });
+
+        socket.on('gesture_update', (data) => {
+            const recognized_gesture = data;
+            
+            // The logic in the 'your_script.js' file will now handle this recognized gesture.
+            handleRecognizedGesture(recognized_gesture); // Assuming you've defined this function in your_script.js
+        });
+    </script>
+-->
 </body>
 </html>
