@@ -25,15 +25,34 @@ const BASE_URL = "{{ url_for('static', filename='') }}";
     background-position: center center;
         }
 
- #selected-item{
+ 
+ #selected-item-1{
+<!--display: none;-->  /* Initially hidden */
+    width: 100;   /* Adjust as needed */
+    height: 100;  /* Adjust as needed */
+    position: absolute;
+    top: 85%;  /* This will push it just below the video feed */
+    left: 11%;  /* Center it horizontally */
+    transform: translateX(-50%);  /* This will help with the centering */
+}
+ #selected-item-2{
 <!--display: none;-->  /* Initially hidden */
     width: 100px;   /* Adjust as needed */
     height: 100px;  /* Adjust as needed */
     position: absolute;
     top: 85%;  /* This will push it just below the video feed */
-    left: 11%;  /* Center it horizontally */
+    left: 24%;  /* Center it horizontally */
     transform: translateX(-50%);  /* This will help with the centering */
-}      
+}  
+#ordered{
+<!--display: none;-->  /* Initially hidden */
+    width: 100px;   /* Adjust as needed */
+    height: 100px;  /* Adjust as needed */
+    position: absolute;
+    top: 85%;  /* This will push it just below the video feed */
+    left: 37%;  /* Center it horizontally */
+    transform: translateX(-50%);  /* This will help with the centering */
+}   
 .video-feed {
     position: absolute;
     top: 167px;  /* This will push it 50 pixels down */
@@ -61,19 +80,17 @@ position:absolute;
     left: 43%;  /* Adjust this to position the grid horizontally as you want */
     transform: translate(-50%, -50%);  /* Center the grid */
 }
-.menu-heading {
+.label {
+    background-color: green;
+    color: white;
     text-align: center;
-    font-size: 50px;
-    margin-bottom: 40px;
-    color: #333;  /* Adjust the color as needed */
-}
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+position: absolute;
+top:600px;
 
-#quantity-icons {
-    display: none;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));  /* This will create a responsive grid with each item taking up at least 100px */
-    gap: 16px;  /* Spacing between grid items */
 }
-
         .menu-icon {
             width: 100px;
             height: 100px;
@@ -84,6 +101,9 @@ position:absolute;
     <div class="bg-image">
         <img src="{{ url_for('video_feed') }}" class="video-feed" />
         <div id="selected-item"></div>
+<div id="selected-item-1"></div>
+<div id="selected-item-2"></div>
+<div id="ordered"></div>
     </div>
 
 
@@ -91,41 +111,19 @@ position:absolute;
 
 <div class="right-container"> <!-- Assuming you have a container for the right side -->
 
-    <!--........<h2 class="menu-heading">Menu Items</h2>........-->
 
     <div class="menu-icons" id="menu-items">
         <!-- Place all your icon images here -->
-    	<img src="{{ url_for('static', filename='icon0.png') }}" alt="Menu 1" class="menu-icon" data-gesture="0">
-	<img src="{{ url_for('static', filename='icon1.png') }}" alt="Menu 2" class="menu-icon" data-gesture="1">
-   	 <img src="{{ url_for('static', filename='icon2.png') }}" alt="Menu 3" class="menu-icon" data-gesture="2">
-  	  <img src="{{ url_for('static', filename='icon3.png') }}" alt="Menu 4" class="menu-icon" data-gesture="3">
-  	  <img src="{{ url_for('static', filename='icon4.png') }}" alt="Menu 5" class="menu-icon" data-gesture="4">
-  	  <img src="{{ url_for('static', filename='icon5.png') }}" alt="Menu 6" class="menu-icon" data-gesture="5">
-  	  <img src="{{ url_for('static', filename='icon6.png') }}" alt="Menu 7" class="menu-icon" data-gesture="6">    
+    	<img src="{{ url_for('static', filename='icon1.png') }}" alt="Menu 1" class="menu-icon" data-gesture="1">
+	<img src="{{ url_for('static', filename='icon2.png') }}" alt="Menu 2" class="menu-icon" data-gesture="2">
+   	 <img src="{{ url_for('static', filename='icon3.png') }}" alt="Menu 3" class="menu-icon" data-gesture="3">
+  	  <img src="{{ url_for('static', filename='icon4.png') }}" alt="Menu 4" class="menu-icon" data-gesture="4">
+  	  <img src="{{ url_for('static', filename='icon5.png') }}" alt="Menu 5" class="menu-icon" data-gesture="5">
+  	  <img src="{{ url_for('static', filename='icon6.png') }}" alt="Menu 6" class="menu-icon" data-gesture="6">
+  	  <img src="{{ url_for('static', filename='icon7.png') }}" alt="Menu 7" class="menu-icon" data-gesture="7">    
 	<!-- ... add the remaining icons in similar fashion ... -->
     </div>
-<div id="quantity-icons" >
-      <!--  <img src="{{ url_for('static', filename='quantity1.png') }}" alt="Quantity 1" class="menu-icon" data-gesture="1">
-        <img src="{{ url_for('static', filename='quantity2.png') }}" alt="Quantity 2" class="menu-icon" data-gesture="2">
-        <img src="{{ url_for('static', filename='quantity3.png') }}" alt="Quantity 3" class="menu-icon" data-gesture="3">
-    --></div>
-
 </div>
 <script src="{{ url_for('static', filename='js/your_script.js') }}"></script>
-<!--<script>
-        const socket = io.connect('http://127.0.0.1:5000');  // Adjust the URL if needed
-
-        socket.on('connect', () => {
-            socket.emit('start_gesture_recognition');
-        });
-
-        socket.on('gesture_update', (data) => {
-            const recognized_gesture = data;
-            
-            // The logic in the 'your_script.js' file will now handle this recognized gesture.
-            handleRecognizedGesture(recognized_gesture); // Assuming you've defined this function in your_script.js
-        });
-    </script>
--->
 </body>
 </html>
